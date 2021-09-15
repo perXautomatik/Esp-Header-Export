@@ -16,10 +16,11 @@ $MASTERLIST= gc "C:\Users\chris\AppData\Local\FalloutNV\plugins.txt"| select -fi
 
 
 #"E:\SteamLibrary\steamapps\common\Fallout New Vegas\Data\FormiD.esp" | Get-espHeader | ?{$MASTERLIST -NotContains $_}
-$folderName = "E:\Vortex Mods\fallout3\2021_07_17_20_47_0317165700"
+$folderName = "E:\Vortex Mods\falloutnv\xEditFilterPatch"
 
 #$filListToCheck = gc "C:\Users\chris\OneDrive\Desktop\FileList.txt"
-$filListToCheck = Get-ChildItem -Exclude 'txt','gitignore' -path $folderName  | %{$_.fullname}
+$wildcards = @(".bak",".txt",".gitignore",".lnk")
+$filListToCheck = Get-ChildItem -path $folderName | where {$_.extension -notin $wildcards}  | %{$_.fullname}
 
 #get paths from filelist where Get-espHeader 
 
