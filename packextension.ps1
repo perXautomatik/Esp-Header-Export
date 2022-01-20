@@ -3,8 +3,6 @@ $current = Get-Location
 #$allfiles = Get-ChildItem -Path $current
 #get files | Select-Object -Last 1
 
-$bsarchPath="C:\Modding\Fallout4\fallout4\Tools\BSArch\bsarch.exe"
-
 $esp = Get-ChildItem -Path $current | Where { $_.Name -like '*.esp'}
 $esm = Get-ChildItem -Path $current | Where { $_.Name -like '*.esm'}
 
@@ -41,13 +39,13 @@ if (($espNr -eq 1)-or ($esmNr -eq 1 )) {
 #if name textures
  #       meshes  then use x
 if ($textureMeshes -ne $null)
-{$textureMeshes | %{  ($_ | select -property name) | .$bsarchPath pack $_ ($s + " - " + $_ + ".bsa") -z -fnv -share -mt}}
+{$textureMeshes | %{  ($_ | select -property name) | ."C:\Modding\Fallout4\fallout4\Tools\BSArch\bsarch.exe" pack $_ ($s + " - " + $_ + ".bsa") -z -fnv -share -mt}}
 
 #if name music
  #       sound then use y
  if ($SoundMusic -ne $null)
 {
-$SoundMusic | %{  ($_ | select -property name) | .$bsarchPath pack $_ ($s + " - " + $_ + ".bsa") -fnv -share -mt}}
+$SoundMusic | %{  ($_ | select -property name) | ."C:\Modding\Fallout4\fallout4\Tools\BSArch\bsarch.exe" pack $_ ($s + " - " + $_ + ".bsa") -fnv -share -mt}}
 
 
 
